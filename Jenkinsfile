@@ -8,7 +8,7 @@ pipeline {
         stage('Imagen'){
             steps{
                 sh '''
-		docker-compose build
+		        docker-compose build
                 git tag 1.0.${BUILD_NUMBER}
                 docker tag ghcr.io/albertosantiago-lt/hello-springrest/springrest:latest ghcr.io/albertosantiago-lt/hello-springrest/springrest:1.0.${BUILD_NUMBER}
                 '''
@@ -26,7 +26,7 @@ pipeline {
 		        }
             }
         }
-        stage('eb Deploy'){
+/*        stage('eb Deploy'){
             steps{
                 withAWS(credentials: 'Credentials_aws') {
                     dir(app){
@@ -34,7 +34,7 @@ pipeline {
                     }
                 }
           } 
-        }
+        }*/
 
         stage('Jacoco'){
             steps{
