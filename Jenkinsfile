@@ -50,7 +50,7 @@ pipeline {
         stage('Jacoco'){
             steps{
                 jacoco (
-                    execPattern: './app/build/jacoco/*.exec',
+                    execPattern: './build/jacoco/*.exec',
                     runAlways: true
                     )
             }
