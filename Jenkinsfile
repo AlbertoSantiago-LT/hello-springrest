@@ -9,6 +9,7 @@ pipeline {
             steps{
                 sh './gradlew test jacocoTestReport'
                 sh './gradlew check'
+                sh 'trivy fs -f json -o report-tri.json .'
             }
         }
         stage('Jacoco'){
@@ -19,6 +20,12 @@ pipeline {
                     )
             }
         }
+        stage('TRIVY'){
+            steps{
+                recordIssues(tools: [trivy(pattern: './report-tri.json')])
+            }
+        }
+
         stage('PMD'){
             steps{
                 recordIssues(tools: [pmdParser(name: 'PMD', pattern: 'build/reports/pmd/*.xml')])
