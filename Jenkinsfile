@@ -26,12 +26,16 @@ pipeline {
 		        }
             }
         }
-/*         stage('eb Deploy'){
+        stage('eb Deploy'){
             steps{
-               sh 'eb deploy hello-springrest-dev --laber ${BUILD_NUMBER} '
-          }
+                withAWS(credentials: 'Credentials_aws') {
+                    dir(app){
+                        sh 'eb deploy hello-springrest-dev --version 1.0.${BUILD_NUMBER}'
+                    }
+                }
+          } 
         }
-*/
+
         stage('Jacoco'){
             steps{
                 jacoco (
