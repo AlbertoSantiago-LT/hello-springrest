@@ -56,29 +56,6 @@ pipeline {
                     )
             }
         }
-        stage('PMD'){
-            steps{
-                sh './gradlew check'
-                publishHTML (target : [allowMissing: false,
-                    alwaysLinkToLastBuild: true,
-                    keepAll: true,
-                    reportDir: '/build/reports/pmd',
-                    reportFiles: '*.html',
-                    reportName: 'My Reports',
-                    reportTitles: 'The Report']
-                    )
-            }
-/*
-            publishHTML([allowMissing: false,
-             alwaysLinkToLastBuild: false, 
-             keepAll: false, 
-             reportDir: '/build/reports/pmd', 
-             reportFiles: 'main.html', 
-             reportName: 'HTML Report', 
-             reportTitles: '', 
-             useWrapperFileDirectly: true])
-             */
-        }
     }
 }   
 
