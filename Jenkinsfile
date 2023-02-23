@@ -8,7 +8,7 @@ pipeline {
         stage('Test Check'){
             steps{
                 sh './gradlew test jacocoTestReport'
-                sh './gradlew checkk'
+                sh './gradlew check'
             }
         }
         stage('Jacoco'){
