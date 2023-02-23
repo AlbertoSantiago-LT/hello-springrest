@@ -26,8 +26,14 @@ pipeline {
 		        }
             }
         }
+/*         stage('eb Deploy'){
+            steps{
+               sh 'eb deploy hello-springrest-dev --laber ${BUILD_NUMBER} '
+          }
+        }
+*/
         stage('Jacoco'){
-            stepss{
+            steps{
                 jacoco (
                     classPattern: './app/',
                     execPattern: './app/gradlew',
