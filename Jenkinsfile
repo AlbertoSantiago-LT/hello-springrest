@@ -35,7 +35,7 @@ pipeline {
                 }
           } 
         }*/
-
+/*
         stage('Jacoco'){
             steps{
                 jacoco (
@@ -46,7 +46,15 @@ pipeline {
                     )
             }
         }
-        
+*/
+        stage('Jacoco'){
+            steps{
+                jacoco (
+                    execPattern: './app/build/jacoco/*.exec',
+                    runAlways: true
+                    )
+            }
+        }
     }
 }   
 
