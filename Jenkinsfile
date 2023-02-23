@@ -5,6 +5,25 @@ pipeline {
         ansiColor('xterm')
     }
     stages{
+        stage('Test Check'){
+            steps{
+                sh './gradlew test jacocoTestReport'
+                sh './gradlew checkk'
+            }
+        }
+        stage('Jacoco'){
+            steps{
+                jacoco (
+                    execPattern: './build/jacoco/*.exec',
+                    runAlways: true
+                    )
+            }
+        }
+        stage('PMD'){
+            steps{
+                recordIssues(tools: [pmdParser(name: 'PMD', pattern: 'build/reports/pmd/*.xml')])
+            }
+        }
         stage('Imagen'){
             steps{
                 sh '''
@@ -47,15 +66,7 @@ pipeline {
             }
         }
 */
-        stage('Jacoco'){
-            steps{
-                sh './gradlew test jacocoTestReport'
-                jacoco (
-                    execPattern: './build/jacoco/*.exec',
-                    runAlways: true
-                    )
-            }
-        }
+       
     }
 }   
 
