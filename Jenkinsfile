@@ -26,11 +26,6 @@ pipeline {
 		        }
             }
         }
-#        stage('eb Deploy'){
-#            steps{
-#               sh 'eb deploy hello-springrest-dev --laber ${BUILD_NUMBER} '
-#          }
-#        }
         stage('Jacoco'){
             stepss{
                 jacoco (
