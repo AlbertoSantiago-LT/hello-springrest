@@ -25,7 +25,23 @@ pipeline {
                     sh 'docker push ghcr.io/albertosantiago-lt/hello-springrest/springrest:1.0.${BUILD_NUMBER}'
 		        }
             }
-        }  
+        }
+#        stage('eb Deploy'){
+#            steps{
+#               sh 'eb deploy hello-springrest-dev --laber ${BUILD_NUMBER} '
+#          }
+#        }
+        stage('Jacoco'){
+            stepss{
+                jacoco (
+                    classPattern: './app/',
+                    execPattern: './app/gradlew',
+                    runAlways: true,
+                    sourcePattern: './app/'
+                    )
+            }
+        }
+        
     }
 }   
 
