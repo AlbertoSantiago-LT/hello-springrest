@@ -52,28 +52,15 @@ pipeline {
 		        }
             }
         }
-/*        stage('eb Deploy'){
+       stage('eb Deploy'){
             steps{
                 withAWS(credentials: 'Credentials_aws') {
-                    dir(app){
-                        sh 'eb deploy hello-springrest-dev --version 1.0.${BUILD_NUMBER}'
+                    dir("eb"){
+                        sh 'eb deploy'
                     }
                 }
           } 
-        }*/
-/*
-        stage('Jacoco'){
-            steps{
-                jacoco (
-                    classPattern: './app/',
-                    execPattern: './app/gradlew',
-                    runAlways: true,
-                    sourcePattern: './app/'
-                    )
-            }
-        }
-*/
-       
+       }
     }
 }   
 

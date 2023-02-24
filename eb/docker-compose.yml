@@ -1,0 +1,8 @@
+version: '3'
+services:
+  java:
+    build: .
+#image es el nombre que le vamos a dar a la imagen el docker de debian lo saca del Dockerfile
+    image: ghcr.io/albertosantiago-lt/hello-springrest/springrest:latest
+    ports:
+      - "80:8080"
